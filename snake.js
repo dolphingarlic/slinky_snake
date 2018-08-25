@@ -7,9 +7,14 @@ let length = 15;
 let currentX = -1;
 let currentY = -1;
 
-function getCoords(event) {
+function getMouseCoords(event) {
     currentX = event.clientX;
     currentY = event.clientY;
+}
+
+function getTouchCoords(event) {
+    currentX = event.touches[0].clientX;
+    currentY = event.touches[0].clientY;
 }
 
 function draw() {
