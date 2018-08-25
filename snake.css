@@ -1,0 +1,7 @@
+body {
+    margin: 0;
+}
+
+#snake_canvas {
+    background-color: black;
+}
