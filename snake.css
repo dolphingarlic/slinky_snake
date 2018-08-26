@@ -1,5 +1,12 @@
 body {
-    margin: 0;
+    height: 99.5%;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+html {
+    height: 100%;
+    background-color: black;
 }
 
 #snake_canvas {
