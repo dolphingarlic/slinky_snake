@@ -1,3 +1,5 @@
+let color;
+
 let canvas;
 let ctx;
 
@@ -35,13 +37,27 @@ function draw() {
             ctx.beginPath();
             ctx.arc(vectors[i][0], vectors[i][1], 75 - (30 + 2 * i), 0, 2 * Math.PI, false);
 
-            ctx.fillStyle = 'rgb(255, ' + (20 * i) + ', 0)';
+            switch (color) {
+                case 1:
+                ctx.fillStyle = 'rgb(0, 255, ' + (20 * i) + ')';
+                break;
+
+                case 2:
+                ctx.fillStyle = 'rgb(255, ' + (20 * i) + ', 0)';
+                break;
+
+                case 3:
+                ctx.fillStyle = 'rgb(' + (20 * i) + ', 255, 0)';
+            }
+            
             ctx.fill();
         }
     }
 }
 
 function init() {
+    color = Math.floor(Math.random() * 3) + 1;
+
     canvas = document.getElementById('snake_canvas');
     canvas.height = document.body.clientHeight;
     canvas.width = document.body.clientWidth;
