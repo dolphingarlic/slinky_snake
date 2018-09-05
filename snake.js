@@ -7,6 +7,11 @@ let length = 15;
 let currentX = -1;
 let currentY = -1;
 
+function disappear(event) {
+    currentX = -1
+    currentY = -1
+}
+
 function getMouseCoords(event) {
     currentX = event.clientX;
     currentY = event.clientY;
@@ -40,6 +45,11 @@ function init() {
     canvas = document.getElementById('snake_canvas');
     canvas.height = document.body.clientHeight;
     canvas.width = document.body.clientWidth;
+
+    canvas.addEventListener("mousemove", getMouseCoords, false);
+    canvas.addEventListener("touchmove", getTouchCoords, false);
+    canvas.addEventListener("mouseout", disappear, false);
+    canvas.addEventListener("touchend", disappear, false);
 
     for (i = 0; i < length; i++) {
         vectors.push([currentX, currentY]);
