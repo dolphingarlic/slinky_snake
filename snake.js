@@ -4,7 +4,7 @@ let canvas;
 let ctx;
 
 let vectors = new Array();
-let length = 12;
+let length = 15;
 
 let currentX = -1;
 let currentY = -1;
@@ -39,15 +39,15 @@ function draw() {
 
             switch (color) {
                 case 1:
-                ctx.fillStyle = 'rgb(0, 255, ' + (20 * i) + ')';
+                ctx.fillStyle = 'rgb(0, 255, ' + (16 * i) + ')';
                 break;
 
                 case 2:
-                ctx.fillStyle = 'rgb(255, ' + (20 * i) + ', 0)';
+                ctx.fillStyle = 'rgb(255, ' + (16 * i) + ', 0)';
                 break;
 
                 case 3:
-                ctx.fillStyle = 'rgb(' + (20 * i) + ', 255, 0)';
+                ctx.fillStyle = 'rgb(' + (16 * i) + ', 255, 0)';
             }
             
             ctx.fill();
