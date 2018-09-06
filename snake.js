@@ -4,7 +4,7 @@ let canvas;
 let ctx;
 
 let vectors = new Array();
-let length = 15;
+let length = 12;
 
 let currentX = -1;
 let currentY = -1;
