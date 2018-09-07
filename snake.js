@@ -39,15 +39,25 @@ function draw() {
 
             switch (color) {
                 case 1:
-                ctx.fillStyle = 'rgb(0, 255, ' + (16 * i) + ')';
-                break;
-
                 case 2:
-                ctx.fillStyle = 'rgb(255, ' + (16 * i) + ', 0)';
+                //Blue-Purple
+                ctx.fillStyle = 'rgb(' + (16 * i) + ', 0, 255)';
                 break;
 
                 case 3:
+                case 4:
+                //Fire Color
+                ctx.fillStyle = 'rgb(255, ' + (16 * i) + ', 0)';
+                break;
+
+                case 5:
+                case 6:
+                //Lime Green
                 ctx.fillStyle = 'rgb(' + (16 * i) + ', 255, 0)';
+                
+                case 7:
+                //Random colors
+                ctx.fillStyle = 'rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')';
             }
             
             ctx.fill();
@@ -56,7 +66,7 @@ function draw() {
 }
 
 function init() {
-    color = Math.floor(Math.random() * 3) + 1;
+    color = Math.floor(Math.random() * 7) + 1;
 
     canvas = document.getElementById('snake_canvas');
     canvas.height = document.body.clientHeight;
