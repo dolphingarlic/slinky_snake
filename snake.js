@@ -54,10 +54,12 @@ function draw() {
                 case 6:
                 //Lime Green
                 ctx.fillStyle = 'rgb(' + (16 * i) + ', 255, 0)';
+                break;
                 
                 case 7:
                 //Random colors
                 ctx.fillStyle = 'rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')';
+                break;
             }
             
             ctx.fill();
