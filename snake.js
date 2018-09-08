@@ -4,30 +4,30 @@ let canvas;
 let ctx;
 
 let vectors = new Array();
-let seizure_colors = new Array();
 let length = 15;
+
+let seizure_colors = new Array();
+let update = 1;
 
 let currentX = -1;
 let currentY = -1;
 
 function update_seizure() {
     seizure_colors.push('rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')');
-    seizure_colors.push(seizure_colors[0]);
-    seizure_colors.shift();
     seizure_colors.shift();
 }
 
-function disappear(event) {
+function disappear() {
     currentX = -1
     currentY = -1
 }
 
-function getMouseCoords(event) {
+function get_mouse_coords(event) {
     currentX = event.clientX;
     currentY = event.clientY;
 }
 
-function getTouchCoords(event) {
+function get_touch_coords(event) {
     currentX = event.touches[0].clientX;
     currentY = event.touches[0].clientY;
 }
@@ -67,15 +67,16 @@ function draw() {
                 case 7:
                 //Random colors
                 ctx.fillStyle = seizure_colors[i];
+                update = (update + 1) % 4;
                 break;
             }
             
             ctx.fill();
-            
-            if (color === 7) {
-                update_seizure();
-            }
         }
+    }
+
+    if (color === 7 && update === 0) {
+        update_seizure();
     }
 }
 
@@ -86,8 +87,8 @@ function init() {
     canvas.height = document.body.clientHeight;
     canvas.width = document.body.clientWidth;
 
-    canvas.addEventListener("mousemove", getMouseCoords, false);
-    canvas.addEventListener("touchmove", getTouchCoords, false);
+    canvas.addEventListener("mousemove", get_mouse_coords, false);
+    canvas.addEventListener("touchmove", get_touch_coords, false);
     canvas.addEventListener("mouseout", disappear, false);
     canvas.addEventListener("touchend", disappear, false);
 
@@ -96,9 +97,8 @@ function init() {
     }
     
     if (color === 7) {
-        for (i = 0; i < length + 1; i++) {
+        for (i = 0; i < length; i++) {
             seizure_colors.push('rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')');
-            seizure_colors.push(seizure_colors[0]);
         }
     }
 
