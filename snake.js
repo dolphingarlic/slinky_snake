@@ -82,6 +82,12 @@ function init() {
     for (i = 0; i < length; i++) {
         vectors.push([currentX, currentY]);
     }
+    
+    if (color === 7) {
+        for (i = 0; i < length; i++) {
+            seizure_colors.push('rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')');
+        }
+    }
 
     ctx = canvas.getContext('2d');
 
