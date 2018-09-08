@@ -4,10 +4,16 @@ let canvas;
 let ctx;
 
 let vectors = new Array();
+let seizure_colors = new Array();
 let length = 15;
 
 let currentX = -1;
 let currentY = -1;
+
+function update_seizure() {
+    seizure_colors.push('rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')');
+    seizure_colors.shift();
+}
 
 function disappear(event) {
     currentX = -1
@@ -63,6 +69,10 @@ function draw() {
             }
             
             ctx.fill();
+            
+            if (color === 7) {
+                update_seizure();
+            }
         }
     }
 }
