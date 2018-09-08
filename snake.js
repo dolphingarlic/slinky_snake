@@ -12,6 +12,8 @@ let currentY = -1;
 
 function update_seizure() {
     seizure_colors.push('rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')');
+    seizure_colors.push(seizure_colors[0]);
+    seizure_colors.shift();
     seizure_colors.shift();
 }
 
@@ -64,7 +66,7 @@ function draw() {
                 
                 case 7:
                 //Random colors
-                ctx.fillStyle = 'rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')';
+                ctx.fillStyle = seizure_colors[i];
                 break;
             }
             
@@ -94,8 +96,9 @@ function init() {
     }
     
     if (color === 7) {
-        for (i = 0; i < length; i++) {
+        for (i = 0; i < length + 1; i++) {
             seizure_colors.push('rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')');
+            seizure_colors.push(seizure_colors[0]);
         }
     }
 
