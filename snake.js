@@ -13,7 +13,9 @@ let currentX = -1;
 let currentY = -1;
 
 function update_seizure() {
-    seizure_colors.push('rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')');
+    let length = seizure_colors.push('rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')');
+    seizure_colors.push(seizure_colors[length - 1]);
+    seizure_colors.shift();
     seizure_colors.shift();
 }
 
@@ -98,7 +100,8 @@ function init() {
     
     if (color === 7) {
         for (i = 0; i < length; i++) {
-            seizure_colors.push('rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')');
+            let length = seizure_colors.push('rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')');
+            seizure_colors.push(seizure_colors[length - 1]);
         }
     }
 
