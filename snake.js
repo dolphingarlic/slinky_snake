@@ -76,7 +76,7 @@ function draw() {
         }
     }
 
-    if (color === 7 && ++update === 4) {
+    if (color === 7 && ++update === 10) {
         update = 0;
         update_seizure();
     }
