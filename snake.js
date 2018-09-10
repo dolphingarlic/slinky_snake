@@ -69,7 +69,6 @@ function draw() {
                 case 7:
                 //Random colors
                 ctx.fillStyle = seizure_colors[i];
-                update = (update + 1) % 4;
                 break;
             }
             
@@ -77,7 +76,8 @@ function draw() {
         }
     }
 
-    if (color === 7 && update === 0) {
+    if (color === 7 && ++update === 4) {
+        update = 0;
         update_seizure();
     }
 }
