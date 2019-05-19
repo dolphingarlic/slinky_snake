@@ -1,14 +1,11 @@
-body {
-    height: 99.5%;
-    margin: 0 auto;
-    padding: 0 auto;
-}
-
-html {
+html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
     background-color: black;
 }
 
 #snake_canvas {
+    height: 100vh
     background-color: black;
 }
