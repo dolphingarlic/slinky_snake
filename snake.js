@@ -86,6 +86,8 @@ function init() {
     color = Math.floor(Math.random() * 7) + 1;
 
     canvas = document.getElementById('snake_canvas');
+    canvas.height = document.body.clientHeight;
+    canvas.width = document.body.clientWidth;
 
     canvas.addEventListener("mousemove", get_mouse_coords, false);
     canvas.addEventListener("touchmove", get_touch_coords, false);
