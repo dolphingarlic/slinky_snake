@@ -13,15 +13,23 @@ let currentX = -1;
 let currentY = -1;
 
 function update_seizure() {
-    let length = seizure_colors.push('rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')');
+    let length = seizure_colors.push(
+        "rgb(" +
+            Math.floor(Math.random() * 256) +
+            ", " +
+            Math.floor(Math.random() * 256) +
+            ", " +
+            Math.floor(Math.random() * 256) +
+            ")"
+    );
     seizure_colors.push(seizure_colors[length - 1]);
     seizure_colors.shift();
     seizure_colors.shift();
 }
 
 function disappear() {
-    currentX = -1
-    currentY = -1
+    currentX = -1;
+    currentY = -1;
 }
 
 function get_mouse_coords(event) {
@@ -36,42 +44,49 @@ function get_touch_coords(event) {
 
 function draw() {
     ctx.rect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = "black";
     ctx.fill();
 
     vectors.push([currentX, currentY]);
     vectors.shift();
-    
+
     for (i = 0; i < length; i++) {
         if (vectors[i][0] > -1 && vectors[i][1] > -1) {
             ctx.beginPath();
-            ctx.arc(vectors[i][0], vectors[i][1], 75 - (30 + 2 * i), 0, 2 * Math.PI, false);
+            ctx.arc(
+                vectors[i][0],
+                vectors[i][1],
+                75 - (30 + 2 * i),
+                0,
+                2 * Math.PI,
+                false
+            );
 
             switch (color) {
                 case 1:
                 case 2:
-                //Blue-Purple
-                ctx.fillStyle = 'rgb(' + (16 * i) + ', 0, 255)';
-                break;
+                    //Blue-Purple
+                    ctx.fillStyle = "rgb(" + 16 * i + ", 0, 255)";
+                    break;
 
                 case 3:
                 case 4:
-                //Fire Color
-                ctx.fillStyle = 'rgb(255, ' + (16 * i) + ', 0)';
-                break;
+                    //Fire Color
+                    ctx.fillStyle = "rgb(255, " + 16 * i + ", 0)";
+                    break;
 
                 case 5:
                 case 6:
-                //Lime Green
-                ctx.fillStyle = 'rgb(' + (16 * i) + ', 255, 0)';
-                break;
-                
+                    //Lime Green
+                    ctx.fillStyle = "rgb(" + 16 * i + ", 255, 0)";
+                    break;
+
                 case 7:
-                //Random colors
-                ctx.fillStyle = seizure_colors[i];
-                break;
+                    //Random colors
+                    ctx.fillStyle = seizure_colors[i];
+                    break;
             }
-            
+
             ctx.fill();
         }
     }
@@ -83,37 +98,47 @@ function draw() {
 }
 
 function init() {
-    color = Math.floor(Math.random() * 7) + 1;
+    setTimeout(function() {
+        color = Math.floor(Math.random() * 7) + 1;
 
-    canvas = document.getElementById('snake_canvas');
-    canvas.height = document.body.clientHeight;
-    canvas.width = document.body.clientWidth;
+        canvas = document.getElementById("snake_canvas");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-    canvas.addEventListener("mousemove", get_mouse_coords, false);
-    canvas.addEventListener("touchmove", get_touch_coords, false);
-    canvas.addEventListener("mouseout", disappear, false);
-    canvas.addEventListener("touchend", disappear, false);
+        canvas.addEventListener("mousemove", get_mouse_coords, false);
+        canvas.addEventListener("touchmove", get_touch_coords, false);
+        canvas.addEventListener("mouseout", disappear, false);
+        canvas.addEventListener("touchend", disappear, false);
 
-    for (i = 0; i < length; i++) {
-        vectors.push([currentX, currentY]);
-    }
-    
-    if (color === 7) {
         for (i = 0; i < length; i++) {
-            let length = seizure_colors.push('rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')');
-            seizure_colors.push(seizure_colors[length - 1]);
+            vectors.push([currentX, currentY]);
         }
-    }
 
-    ctx = canvas.getContext('2d');
+        if (color === 7) {
+            for (i = 0; i < length; i++) {
+                let length = seizure_colors.push(
+                    "rgb(" +
+                        Math.floor(Math.random() * 256) +
+                        ", " +
+                        Math.floor(Math.random() * 256) +
+                        ", " +
+                        Math.floor(Math.random() * 256) +
+                        ")"
+                );
+                seizure_colors.push(seizure_colors[length - 1]);
+            }
+        }
 
-    ctx.rect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'black';
-    ctx.fill();
+        ctx = canvas.getContext("2d");
 
-    clearInterval();
-    setInterval(draw, 10);
+        ctx.rect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "black";
+        ctx.fill();
+
+        clearInterval();
+        setInterval(draw, 10);
+    }, 0);
 }
 
-onload = init;
-onresize = init;
+init();
+window.addEventListener("resize", init, false);
